@@ -63,20 +63,20 @@ Test Accuracy: **~99.2%**
 </p>
 2)Number Three prediction:
 <p align="center">
-  <img src="Images/NoThreePredition.png" width="500"/>
+  <img src="images/NoThreePredition.png" width="500"/>
 </p>
 
 3)Number Five prediction:
 <p align="center">
-  <img src="Images/NoFivePredition.png" width="500"/>
+  <img src="images/NoFivePredition.png" width="500"/>
 </p>
 
 4)Number Six prediction:
 <p align="center">
-  <img src="Images/NoSixPredition.png" width="500"/>
+  <img src="images/NoSixPredition.png" width="500"/>
 </p>
 
 5)Number Seven prediction:
 <p align="center">
-  <img src="Images/NoSevenPredition.png" width="500"/>
+  <img src="images/NoSevenPredition.png" width="500"/>
 </p>
