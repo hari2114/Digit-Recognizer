@@ -31,7 +31,7 @@ except ImportError:
 
 
 app = Flask(__name__)
-MODEL_PATH = "digit_model.h5"
+MODEL_PATH = "digit_model.keras"
 
 
 # ── Model ─────────────────────────────────────────────────────────────────
@@ -53,31 +53,16 @@ def build_model():
     model.compile(optimizer="adam", loss="sparse_categorical_crossentropy", metrics=["accuracy"])
     return model
 
-
-def train_and_save():
-    print("[TRAIN] Loading MNIST dataset...")
-    (x_train, y_train), (x_test, y_test) = keras.datasets.mnist.load_data()
-    x_train = x_train[..., np.newaxis] / 255.0
-    x_test  = x_test[..., np.newaxis]  / 255.0
-
-    model = build_model()
-    print("[TRAIN] Training CNN... (~2-3 min on CPU)")
-    model.fit(x_train, y_train, epochs=5, batch_size=128, validation_split=0.1, verbose=1)
-
-    loss, acc = model.evaluate(x_test, y_test, verbose=0)
-    print(f"[TRAIN] Test Accuracy: {acc:.4f}")
-    model.save(MODEL_PATH)
-    print(f"[TRAIN] Model saved to {MODEL_PATH}")
-    return model
-
-
 def load_or_train():
     if not TF_AVAILABLE:
         return None
+
     if os.path.exists(MODEL_PATH):
         print("[INFO] Loading saved model...")
-        return keras.models.load_model(MODEL_PATH)
-    return train_and_save()
+        return keras.models.load_model(MODEL_PATH, compile=False)
+
+    print("[ERROR] Model file not found!")
+    return None
 
 
 model = load_or_train()
